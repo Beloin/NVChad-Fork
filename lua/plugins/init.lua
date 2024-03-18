@@ -11,6 +11,9 @@ return {
     -- Code formatter
     "stevearc/conform.nvim",
     opts = require("configs.conform").opts,
+    config = function()
+      require "configs.conform"
+    end,
     event = "VeryLazy",
   },
 
