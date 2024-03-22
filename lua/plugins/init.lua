@@ -222,5 +222,13 @@ return {
     event = 'VeryLazy',
   },
 
-  -- TODO: https://github.com/lewis6991/gitsigns.nvim
+  {
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+        require("gitsigns").setup()
+    end
+  }
 }
