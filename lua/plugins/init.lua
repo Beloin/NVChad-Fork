@@ -1,3 +1,11 @@
+
+function configureImagePreview()
+  local openFl = require("scripts.open_files")
+  vim.keymap.set('n', '<leader>pp', openFl.call_gweenview, {desc = '[p]review images'})  
+end
+
+configureImagePreview()
+
 return {
   {
     "stevearc/conform.nvim",
@@ -74,7 +82,23 @@ return {
          "jedi-language-server",
          "markdownlint",
          "pylint",
-         "cmake-language-server"
+         "cmake-language-server",
+         "autopep8",
+         "clang-format",
+         "clangd",
+         "cmake-language-server",
+         "cmakelang",
+         "codelldb",
+         "cpplint",
+         "cpptools",
+         "debugpy",
+         "doctoc",
+         "hadolint",
+         "jedi-language-server",
+         "jsonlint",
+         "markdownlint",
+         "pylint",
+         "vale",
        },
      },
    },
@@ -131,10 +155,12 @@ return {
   { "folke/neodev.nvim", opts = {} },
 
   {
-    -- TODO: Add tab to dapui and add shortcut
     "rcarriga/nvim-dap-ui",
     dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     lazy = false,
+
+    vim.keymap.set('n', '<leader>Dut', ':lua require"dapui".toggle()<CR>', {desc = '[d]ap [u]i [t]oggle'}),
+
     config = function()
       require("dapui").setup()
     end
@@ -148,14 +174,23 @@ return {
   -- This configures CMake for build, lsp and debug!
   {
     "Shatur/neovim-tasks",
-    lazy=false
+    lazy=false,
+    config = function()
+      vim.keymap.set('n', '<leader>Cc', ":Task start cmake configure<CR>", {desc = '[C]Make [c]onfigure'})
+      vim.keymap.set('n', '<leader>Cd', ":Task start cmake debug<CR>", {desc = '[C]Make [d]ebug'})
+      vim.keymap.set('n', '<leader>Cr', ":Task start cmake run<CR>", {desc = '[C]Make [r]un'})
+    end
   },
 
   -- { 'Civitasv/cmake-tools.nvim', lazy = false },
 
-  { 'Shatur/neovim-session-manager', lazy = false },
-  -- TODO: Test with this later to see if saves Tabs. 
- 
+  { 
+    'Shatur/neovim-session-manager',
+    lazy = false,
+    vim.keymap.set('n', '<leader>sc', ':SessionManager load_current_dir_session<CR>', {desc = '[s]ession load [c]urrent'}),
+    vim.keymap.set('n', '<leader>sl', ':SessionManager load_session<CR>', {desc = '[s]ession [l]oad'})
+  },
+
   -- Plantuml support
   { 
     'javiorfo/nvim-soil',
@@ -174,11 +209,7 @@ return {
   --       require("image_preview").setup()
   --   end
   -- },
-  -- For now, use:
-  {
-    -- TODO: This does not work
-    vim.keymap.set('n', '<leader>pp', ':lua require("scripts.open_files").call_gweenview()<CR>', {desc = '[p]review images'})
-  },
+  -- For now, use: ./scripts.open_files
 
   {
     "folke/todo-comments.nvim",
@@ -189,5 +220,7 @@ return {
       -- refer to the configuration section below
     },
     event = 'VeryLazy',
-  }
+  },
+
+  -- TODO: https://github.com/lewis6991/gitsigns.nvim
 }

@@ -16,4 +16,3 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 -- tnoremap <Esc> <C-\><C-n>
 map("t", "<ESC>", "<C-\\><C-n>", { desc = "Escape insert mode" })
-
