@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.get_focused_file_path = function ()
     local lib = require'nvim-tree.lib'
     local current_node = lib.get_node_at_cursor()
@@ -14,7 +13,7 @@ end
 
 M.call_gweenview = function ()
     print("HIIIII")
-    local fl = get_focused_file_path()
+    local fl = M.get_focused_file_path()
     print("HIIIII")
     os.execute("gwenview " .. fl)
 end

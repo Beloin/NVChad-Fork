@@ -33,6 +33,7 @@ Starter config for NvChad
 1. Omnisharp
     - Install with Mason
     - Configure on `configs.lspconfig` the `lspconfig.omnisharp.setup` setup where omnisharp was installed
+    - More helo see [here](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp)
 1. Mono:
     > sudo apt install mono-devel
 1. TreeSitter

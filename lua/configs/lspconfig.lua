@@ -71,3 +71,6 @@ lspconfig.omnisharp.setup({
   -- true
   analyze_open_documents_only = false,
 })
+
+local map = vim.keymap.set
+map('n', 'gI', vim.lsp.buf.implementation, { desc = "Go to Implementation" })
