@@ -101,7 +101,15 @@ return {
          "vale",
        },
      },
-   },
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {"williamboman/mason.nvim"},
+    config = function()
+      require("mason-lspconfig").setup()
+    end
+  },
 
 
   -- Lint setup
