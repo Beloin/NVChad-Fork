@@ -28,7 +28,7 @@ local on_init = configs.on_init
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd", "omnisharp", "ast-grep", "lua-language-server"}
+local servers = { "html", "cssls", "clangd", "omnisharp", "ast-grep", "lua-language-server", "sqlls"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -41,7 +41,7 @@ end
 lspconfig.omnisharp.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  -- cmd = { "dotnet", "/home/jesper/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+  cmd = { "/home/beloin/.local/share/nvim/mason/packages/omnisharp/omnisharp" },
   -- Enables support for reading code style, naming convention and analyzer
   -- settings from .editorconfig.
   enable_editorconfig_support = true,

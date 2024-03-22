@@ -31,6 +31,9 @@ M.opts = {
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
 		xml = { "xmlformat" },
+    cpp = { "clang-format" },
+    cmake = { "cmakelang" },
+    sql = { "sql-formatter" }
 		-- yaml = { "yamlfix" },
 	},
 }

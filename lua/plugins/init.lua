@@ -74,9 +74,6 @@ return {
     end
   },
 
-  -- For C# only
-
-
   -- Lint setup
   {
     "mfussenegger/nvim-lint",
