@@ -22,6 +22,31 @@ return {
   },
 
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "cpp",
+        "c",
+        "c_sharp",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -62,6 +87,7 @@ return {
          "pylint",
          "vale",
          "csharpier",
+         "netcoredbg"
        },
      },
   },
@@ -121,7 +147,7 @@ return {
     end
   },
 
-  { "nvim-neotest/nvim-nio" },
+  { "nvim-neotest/nvim-nio", },
   { "folke/neodev.nvim", opts = {} },
 
   {
@@ -146,9 +172,13 @@ return {
     "Shatur/neovim-tasks",
     lazy=false,
     config = function()
-      vim.keymap.set('n', '<leader>Cc', ":Task start cmake configure<CR>", {desc = '[C]Make [c]onfigure'})
-      vim.keymap.set('n', '<leader>Cd', ":Task start cmake debug<CR>", {desc = '[C]Make [d]ebug'})
-      vim.keymap.set('n', '<leader>Cr', ":Task start cmake run<CR>", {desc = '[C]Make [r]un'})
+      vim.keymap.set('n', '<leader>tcc', ":Task start cmake configure<CR>", {desc = '[c]Make [c]onfigure'})
+      vim.keymap.set('n', '<leader>tcd', ":Task start cmake debug<CR>", {desc = '[c]Make [d]ebug'})
+      vim.keymap.set('n', '<leader>tcr', ":Task start cmake run<CR>", {desc = '[c]Make [r]un'})
+      vim.keymap.set('n', '<leader>tct', ":Task set_module_param cmake target<CR>", {desc = '[c]Make [t]arget'})
+      vim.keymap.set('n', '<leader>tx', ":Task cancel<CR>", {desc = '[t]ask cancel [x]'})
+      vim.keymap.set('n', '<leader>tar', ":Task set_task_param cmake run args<CR>", {desc = '[t]ask set [a]rguments for [r]un'})
+      vim.keymap.set('n', '<leader>tad', ":Task set_task_param cmake run args<CR>", {desc = '[t]ask set [a]rguments for [d]ebug'})
     end
   },
 
@@ -158,7 +188,7 @@ return {
     'Shatur/neovim-session-manager',
     lazy = false,
     vim.keymap.set('n', '<leader>sc', ':SessionManager load_current_dir_session<CR>', {desc = '[s]ession load [c]urrent'}),
-    vim.keymap.set('n', '<leader>sl', ':SessionManager load_session<CR>', {desc = '[s]ession [l]oad'})
+    vim.keymap.set('n', '<leader>sl', ':SessionManager load_session<CR>', {desc = '[s]ession [l]oad'}),
   },
 
   -- Plantuml support
@@ -201,5 +231,22 @@ return {
         require("gitsigns").setup()
     end
   },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local lualine = require('lualine')
+      lualine.setup()
+    end,
+    event = 'VeryLazy',
+  }
 
 }

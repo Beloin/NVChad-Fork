@@ -5,12 +5,14 @@ Starter config for NvChad
 ## Dependencies
 
 1. ripgrep
+2. `JetBrainsMono Nerd Font`, or any Nerd Font
 
-## TO add
+## To add
 
 1. https://github.com/alepez/vim-gtest
 2. https://github.com/tenfyzhong/vim-gencode-cpp
 3. https://github.com/puremourning/vimspector?tab=readme-ov-file
+4. Look for classes (Or find symbol)
 
 
 # Add language Support:
@@ -24,9 +26,15 @@ Starter config for NvChad
 
 # Language Specific
 
-# C/C++ with CMake
+## C/C++ with CMake
 
-1. 
+1. Install obviously cmake and build-essentials
+2. ...
+3. ...
+
+### CMake
+
+> pip install cmake-language-server
 
 ## C#
 

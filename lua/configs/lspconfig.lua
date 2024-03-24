@@ -28,7 +28,7 @@ local on_init = configs.on_init
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd", "omnisharp", "ast-grep", "lua-language-server", "sqlls"}
+local servers = { "html", "cssls", "clangd", "omnisharp", "ast-grep", "lua-language-server", "sqlls", "cmake-language-server"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -37,6 +37,12 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig["cmake-language-server"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "/home/beloin/.local/share/nvim/mason/bin/cmake-language-server" },
+})
 
 lspconfig.omnisharp.setup({
   on_attach = on_attach,
@@ -72,5 +78,19 @@ lspconfig.omnisharp.setup({
   analyze_open_documents_only = false,
 })
 
+function opts(desc)
+  return { buffer = bufnr, desc = desc }
+end
+
 local map = vim.keymap.set
 map('n', 'gI', vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+map('n', 'ga', vim.lsp.buf.type_definition, { desc = "Go to Type Defitinion" })
+
+map('n', '<M-CR>', vim.lsp.buf.code_action, { desc = "Code Action" })
+map('i', '<M-CR>', vim.lsp.buf.code_action, { desc = "Code Action" })
+
+map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
+map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
+
+map("i", "<C-b>", vim.lsp.buf.definition, opts "Lsp Go to definition")
+map("n", "<C-b>", vim.lsp.buf.definition, opts "Lsp Go to definition")

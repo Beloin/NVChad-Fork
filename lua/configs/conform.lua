@@ -31,11 +31,13 @@ M.opts = {
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
 		xml = { "xmlformat" },
-    cpp = { "clang-format" },
-    cmake = { "cmakelang" },
-    sql = { "sql-formatter" }
+		cpp = { "clang-format" },
+		c = { "clang-format" },
+		cmake = { "cmake-format" },
+		sql = { "sql-formatter" }
 		-- yaml = { "yamlfix" },
 	},
+	lsp_fallback = true,
 }
 
 return M

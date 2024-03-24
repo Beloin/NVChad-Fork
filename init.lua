@@ -37,3 +37,33 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+
+-- This adds on VimEnter autocmds
+
+local autocmd = vim.api.nvim_create_autocmd
+autocmd('VimEnter', {  
+  callback = function()
+    local gsn = require('gitsigns')
+    gsn.toggle_current_line_blame()
+  end,
+  once = true
+})
+
+-- autocmd('VimEnter', {  
+--   callback = function()
+--     local args = vim.v.argv
+--     if #args > 1 then
+--       if args[3] == '.' then
+--         require('session-manager').load_current_dir_session()
+--       end
+--     end
+--     print(args)
+--   end,
+--   once = true
+-- })
+
+autocmd('TextYankPost', {
+  callback = function() vim.highlight.on_yank() end,
+  desc = "Briefly highlight yanked text"
+})
