@@ -12,7 +12,6 @@ Starter config for NvChad
 1. https://github.com/alepez/vim-gtest
 2. https://github.com/tenfyzhong/vim-gencode-cpp
 3. https://github.com/puremourning/vimspector?tab=readme-ov-file
-4. Look for classes (Or find symbol)
 
 
 # Add language Support:

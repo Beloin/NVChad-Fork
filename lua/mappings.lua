@@ -47,3 +47,6 @@ map("n", "<F2>", toggle_quickfix, { desc = "Toggle Quickfix", silent = true })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Telescope Git Branchs" })
 map("n", "<leader>gs", "<cmd>Telescope git_stash<CR>", { desc = "Telescope Git Stash" })
 map("n", "<leader>gs", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git Commits" })
+
+
+map("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
