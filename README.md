@@ -43,5 +43,6 @@ Starter config for NvChad
     - More helo see [here](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp)
 1. Mono:
     > sudo apt install mono-devel
+    > sudo pacman -S mono
 1. TreeSitter
     - Installl csharp using `:TSInstall csharp`

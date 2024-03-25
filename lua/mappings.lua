@@ -28,10 +28,9 @@ map("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move Down", silent= true })
 map("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move Up", silent= true })
 
 
--- TODO: Add Format with conform when using C-M-l
-map("i", "<C><M-l>", function()
-  require("conform").format()
-end, { desc = "File Format with conform" })
+map("n", "<leader>cf", function()
+  vim.lsp.buf.format()
+end, { desc = "[c]ode [f]ormat" })
 
 -- Lua function to toggle quickfix window
 function toggle_quickfix()

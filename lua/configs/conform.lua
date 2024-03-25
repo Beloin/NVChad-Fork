@@ -23,7 +23,16 @@ M.opts = {
 			cmd = { "xmlformat" },
 			args = { "--selfclose", "-" },
 		},
+
+		clangformat = {
+			cmd = { "/home/beloin/.local/share/nvim/mason/bin/clang-format" },
+		},
+
+		cmakeformat = {
+			cmd = { "/home/beloin/.local/share/nvim/mason/bin/cmake-format" }
+		}
 	},
+
 	formatters_by_ft = {
 		cs = { "csharpier" },
 		html = { "prettier" },
@@ -31,9 +40,9 @@ M.opts = {
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
 		xml = { "xmlformat" },
-		cpp = { "clang-format" },
-		c = { "clang-format" },
-		cmake = { "cmake-format" },
+		cpp = { "clangformat" },
+		c = { "clangformat" },
+		cmake = { "cmakeformat" },
 		sql = { "sql-formatter" }
 		-- yaml = { "yamlfix" },
 	},
