@@ -245,11 +245,25 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      local lualine = require('lualine')
-      lualine.setup()
-    end,
+    config = require'configs.lualine_config'.config,
     event = 'VeryLazy',
+  },
+
+  {
+    'eriks47/generate.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = 'VeryLazy',
+    vim.keymap.set("n", "<leader>cgi", "<cmd>Generate implementations<CR>")
+  },
+
+  {
+    "Badhi/nvim-treesitter-cpp-tools",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    -- Optional: Configuration
+    opts = require'configs.cpp_tools'.opt,
+    -- End configuration
+    config = true,
+    event = 'VeryLazy'
   },
 
   {
