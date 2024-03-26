@@ -49,3 +49,5 @@ map("n", "<leader>gs", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git
 
 
 map("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
+
+map("n", "<leader>Fb", "vaB:fold<CR>", { desc = "Fold Block" })

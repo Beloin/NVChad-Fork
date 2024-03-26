@@ -28,12 +28,23 @@ Starter config for NvChad
 ## C/C++ with CMake
 
 1. Install obviously cmake and build-essentials
-2. ...
-3. ...
+1. Install `unzip`
+1. Install with mason the required language setup
+    > cmake-language-server
+    > clang-format
+    > clangd
+    > cmakelang
+    > codelldb
+    > cpplint
+    > cpptools
+1. Configure file `lspconfig.lua` if necessary
+
 
 ### CMake
 
 > pip install cmake-language-server
+
+Use the package Task to configure the CMake Tasks, including debug
 
 ## C#
 
@@ -46,3 +57,6 @@ Starter config for NvChad
     > sudo pacman -S mono
 1. TreeSitter
     - Installl csharp using `:TSInstall csharp`
+1. Mason:
+    > netcoredbg
+    > csharpier

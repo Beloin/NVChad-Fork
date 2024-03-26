@@ -42,6 +42,7 @@ lspconfig["cmake-language-server"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "/home/beloin/.local/share/nvim/mason/bin/cmake-language-server" },
+  filetype = {"cmake", "CMakeLists.txt"}
 })
 
 lspconfig.omnisharp.setup({
