@@ -6,6 +6,9 @@ Starter config for NvChad
 
 1. ripgrep
 2. `JetBrainsMono Nerd Font`, or any Nerd Font
+<!-- 3. code-minimap 
+    > sudo pamac build code-minimap -->
+3. 
 
 ## To add
 
