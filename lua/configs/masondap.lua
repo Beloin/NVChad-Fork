@@ -40,9 +40,11 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp
 
+-- C# Dap configurations
+
 dap.adapters.coreclr = {
 	type = "executable",
-	command = "/usr/local/bin/netcoredbg/netcoredbg",
+	command = vim.fn.exepath("netcoredbg"), -- /home/beloin/.local/share/nvim/mason/bin/netcoredbg
 	args = { "--interpreter=vscode" },
 }
 
@@ -52,8 +54,54 @@ dap.configurations.cs = {
 		name = "launch - netcoredbg",
 		request = "launch",
 		program = function()
-			return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+			return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
 		end,
 	},
 }
 
+
+if not dap.adapters["netcoredbg"] then
+	require("dap").adapters["netcoredbg"] = {
+	  type = "executable",
+	  command = vim.fn.exepath("netcoredbg"),
+	  args = { "--interpreter=vscode" },
+	  env = {"ASPNETCORE_ENVIRONMENT=Development"}
+	}
+end
+
+for _, lang in ipairs({ "cs", "fsharp", "vb" }) do
+	if not dap.configurations[lang] then
+	  dap.configurations[lang] = {
+		{
+		  type = "netcoredbg",
+		  name = "Launch file",
+		  request = "launch",
+		  ---@diagnostic disable-next-line: redundant-parameter
+		  program = function()
+			return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
+		  end,
+		  cwd = "${workspaceFolder}",
+		},
+	  }
+	end
+end
+
+
+-- Configure DAP auto start
+-- local dap, dapui = require("dap"), require("dapui")
+
+-- dap.listeners.before.attach.dapui_config = function()
+--   dapui.open()
+-- end
+
+-- dap.listeners.before.launch.dapui_config = function()
+--   dapui.open()
+-- end
+
+-- dap.listeners.before.event_terminated.dapui_config = function()
+--   dapui.close()
+-- end
+
+-- dap.listeners.before.event_exited.dapui_config = function()
+--   dapui.close()
+-- end

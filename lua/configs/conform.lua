@@ -1,16 +1,3 @@
--- local options = {
---   lsp_fallback = true,
-
---   formatters_by_ft = {
---     lua = { "stylua" },
---     c = { "clang-format" },
---     cpp = { "clang-format" },
---   },
-  
--- }
-
--- require("conform").setup(options)
-
 local M = {}
 
 M.opts = {
@@ -30,7 +17,12 @@ M.opts = {
 
 		cmakeformat = {
 			cmd = { "/home/beloin/.local/share/nvim/mason/bin/cmake-format" }
-		}
+		},
+		
+		csharpier = {
+			command = "/home/beloin/.local/share/nvim/mason/bin/dotnet-csharpier",
+			args = { "--write-stdout" },
+		},
 	},
 
 	formatters_by_ft = {

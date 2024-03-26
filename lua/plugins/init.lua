@@ -298,6 +298,23 @@ return {
       vim.keymap.set("n", "<M-Tab>", "<cmd>CybuLastusedNext<CR>")
     end,
     event = "VeryLazy",
-  }
+  },
+
+  -- Language Specific
+  -- C#
+  { 
+    'OmniSharp/omnisharp-vim',
+    lazy = false
+  },
+
+  { 
+    'Hoffs/omnisharp-extended-lsp.nvim'
+  },
+
+  -- Requries vim compiled with python 3.10, uses DAP isntead
+  -- {
+  --   'puremourning/vimspector',
+  --   lazy=false
+  -- }
   
 }
