@@ -8,7 +8,7 @@ Starter config for NvChad
 2. `JetBrainsMono Nerd Font`, or any Nerd Font
 <!-- 3. code-minimap 
     > sudo pamac build code-minimap -->
-3. 
+3. Icons on `@vscode/codicons`
 
 ## To add
 
