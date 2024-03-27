@@ -54,8 +54,9 @@ dap.configurations.cs = {
 		name = "launch - netcoredbg",
 		request = "launch",
 		program = function()
+			vim.cmd("!dotnet build")
 			return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
-		end,
+		end
 	},
 }
 
