@@ -135,6 +135,7 @@ return {
     vim.keymap.set('n', '<leader>Dc', ':lua require"dap".continue()<CR>', {desc = '[d]ebug [c]ontinue'}),
 
     vim.keymap.set('n', '<leader>Db', ':lua require"dap".toggle_breakpoint()<CR>', {desc = '[d]ebug [b]breakpoint'}),
+    vim.keymap.set('n', '<leader>DB', ':lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', {desc = '[d]ebug [B]breakpoint with Condition'}),
 
     vim.keymap.set('n', '<leader>Do', ':lua require"dap".step_over()<CR>', {desc = '[d]ebug Step [o]ver'}),
     vim.keymap.set('n', '<F8>', ':lua require"dap".step_over()<CR>', {desc = '[d]ebug Step [o]ver'}),
@@ -391,5 +392,59 @@ return {
       }
     end,
     lazy = false
-  }
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  },
+
+  {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    dependencies = {
+        'smoka7/hydra.nvim',
+    },
+    opts = {},
+    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+    keys = {
+            {
+                mode = { 'v', 'n' },
+                '<Leader>m',
+                '<cmd>MCstart<cr>',
+                desc = 'Create a selection for selected text or word under the cursor',
+            },
+        },
+  },
+
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+      vim.keymap.set("x", "<leader>ce", ":Refactor extract ", {desc = "Code extract"})
+      vim.keymap.set("x", "<leader>cf", ":Refactor extract_to_file ", {desc = "Code extract to file"})
+
+      vim.keymap.set("x", "<leader>cv", ":Refactor extract_var ", {desc = "Code extract to file"})
+
+      vim.keymap.set({ "n", "x" }, "<leader>ci", ":Refactor inline_var", {desc = "Code inline var"})
+
+      vim.keymap.set( "n", "<leader>cI", ":Refactor inline_func", {desc = "Code inline function"})
+
+      vim.keymap.set("n", "<leader>cb", ":Refactor extract_block", {desc = "Code extract block"})
+      vim.keymap.set("n", "<leader>cbf", ":Refactor extract_block_to_file", {desc = "Code extract block to file"})
+    end,
+    event = "VeryLazy"
+  },
+
+
 }

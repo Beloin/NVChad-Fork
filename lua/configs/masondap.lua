@@ -17,11 +17,15 @@ dap.configurations.cpp = {
 		type = "lldb",
 		request = "launch",
 		program = function()
+			vim.cmd("!cmake --build build")
 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
-		args = {},
+		args = function()
+			local args_string = vim.fn.input("Arguments: ")
+            return vim.split(args_string, " ")
+		end,
 
 		-- 💀
 		-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:

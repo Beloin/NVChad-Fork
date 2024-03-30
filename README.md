@@ -56,11 +56,13 @@ Use the package Task to configure the CMake Tasks, including debug
     - Install with Mason
     - Configure on `configs.lspconfig` the `lspconfig.omnisharp.setup` setup where omnisharp was installed
     - More helo see [here](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp)
+    - omnisharp-mono?
+    - Omnisharp install
 1. Mono:
     > sudo apt install mono-devel
     > sudo pacman -S mono
 1. TreeSitter
-    - Installl csharp using `:TSInstall csharp`
+    - Installl csharp using `:TSInstall c_sharp`
 1. Mason:
     > netcoredbg
     > csharpier
