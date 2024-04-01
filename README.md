@@ -18,7 +18,9 @@ Starter config for NvChad
 4. https://github.com/Badhi/nvim-treesitter-cpp-tools
 
 
-# Add language Support:
+# Add Generic language Support:
+
+Search on `https://www.lazyvim.org/extras/lang` for the language, or:
 
 1. Configure TreeSitter
 2. Install with Mason:
@@ -26,6 +28,7 @@ Starter config for NvChad
     - LSP
     - Linter
     - Formatter
+3. If necessary configure LSP in `configs.lspconfig.lua`
 
 # Language Specific
 

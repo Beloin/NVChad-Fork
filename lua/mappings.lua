@@ -52,3 +52,5 @@ map("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Tel
 map("n", "<leadler>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
 
 map("n", "<leader>Fb", "vaB:fold<CR>", { desc = "Fold Block" })
+
+map("n", "<leader>o", "i<CR><esc>", { desc = "Add one line" })

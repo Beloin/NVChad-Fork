@@ -45,6 +45,10 @@ return {
         "typescript",
         "vim",
         "yaml",
+        "go",
+        "gomod",
+        "gowork",
+        "gosum",
       },
     },
   },
@@ -55,6 +59,7 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
+    opts = require'configs.nvim_lspconfig'.opts
   },
 
   {
@@ -90,7 +95,14 @@ return {
          "pylint",
          "vale",
          "csharpier",
-         "netcoredbg"
+         "netcoredbg",
+         -- Golang
+         "gopls",
+         "goimports", 
+         "gofumpt",
+         "gomodifytags",
+         "impl",
+         "delve"
        },
      },
   },
@@ -447,4 +459,37 @@ return {
   },
 
 
+  -- Golang
+  {
+    "leoluz/nvim-dap-go",
+    config = true,
+  },
+
+  {
+    "nvim-neotest/neotest-go",
+  },
+
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = {
+      "nvim-neotest/neotest-go",
+    },
+    opts = require'configs.neotest_conf'.opts
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    optional = true,
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          vim.list_extend(opts.ensure_installed, { "gomodifytags", "impl" })
+        end,
+      },
+    },
+    opts = require'configs.nonels_config'.opts
+  }
 }

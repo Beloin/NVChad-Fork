@@ -35,8 +35,9 @@ M.opts = {
 		cpp = { "clangformat" },
 		c = { "clangformat" },
 		cmake = { "cmakeformat" },
-		sql = { "sql-formatter" }
+		sql = { "sql-formatter" },
 		-- yaml = { "yamlfix" },
+		go = { "goimports", "gofumpt" },
 	},
 	lsp_fallback = true,
 }
