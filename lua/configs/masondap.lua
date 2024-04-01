@@ -60,7 +60,10 @@ dap.configurations.cs = {
 		program = function()
 			vim.cmd("!dotnet build")
 			return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
-		end
+		end,
+		-- env = function()
+		-- 	return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+		-- end
 	},
 }
 

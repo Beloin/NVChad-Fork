@@ -91,11 +91,13 @@ return {
          "hadolint",
          "jedi-language-server",
          "jsonlint",
+         "json-lsp",
          "markdownlint",
          "pylint",
          "vale",
          "csharpier",
          "netcoredbg",
+
          -- Golang
          "gopls",
          "goimports", 

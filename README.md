@@ -20,7 +20,7 @@ Starter config for NvChad
 
 # Add Generic language Support:
 
-Search on `https://www.lazyvim.org/extras/lang` for the language, or:
+Search on `https://www.lazyvim.org/extras/lang/{language}` for the language, or:
 
 1. Configure TreeSitter
 2. Install with Mason:
