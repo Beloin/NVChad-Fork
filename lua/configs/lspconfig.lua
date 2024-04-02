@@ -29,7 +29,7 @@ local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
 local servers = {"html", "cssls", "clangd", "omnisharp", "ast-grep", "lua-language-server", "sqlls",
-                 "cmake-language-server", "gopls", "json-lsp"}
+                 "cmake-language-server", "gopls", "json-lsp", "jedi-language-server"}
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {

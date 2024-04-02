@@ -12,10 +12,10 @@ Starter config for NvChad
 
 ## To add
 
+1. Launch.json DAP configurations
 1. https://github.com/alepez/vim-gtest
 2. https://github.com/tenfyzhong/vim-gencode-cpp
 3. https://github.com/puremourning/vimspector?tab=readme-ov-file
-4. https://github.com/Badhi/nvim-treesitter-cpp-tools
 
 
 # Add Generic language Support:
