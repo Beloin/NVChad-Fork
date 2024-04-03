@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-nvim-dap").setup({
-    ensure_installed = {"python", "cpptools"},
+    ensure_installed = {"python", "cpptools", "netcoredbg"},
     automatic_installation = true
 })
 

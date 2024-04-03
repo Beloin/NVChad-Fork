@@ -11,9 +11,9 @@ return {
     -- Code formatter
     "stevearc/conform.nvim",
     opts = require("configs.conform").opts,
-    config = function()
-      require "configs.conform"
-    end,
+    -- config = function()
+    --   require "configs.conform"
+    -- end,
     event = "VeryLazy",
   },
 
@@ -35,6 +35,9 @@ return {
         "c",
         "c_sharp",
         "json",
+        "jsdoc",
+        "jsonc",
+        "json5",
         "lua",
         "markdown",
         "markdown_inline",
@@ -106,6 +109,7 @@ return {
          "impl",
          "delve"
        },
+       automatic_installation = true
      },
   },
 
@@ -493,5 +497,11 @@ return {
       },
     },
     opts = require'configs.nonels_config'.opts
+  },
+
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
   }
 }
