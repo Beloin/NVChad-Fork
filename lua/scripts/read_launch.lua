@@ -40,7 +40,7 @@ function read_program()
         return nil
     end
     local program = table['configurations'][1]['program']
-    fullPath = vim.fn.getcwd() .. '/./' ..  program
+    fullPath = vim.fn.getcwd() .. '/./' .. program
 
     return vim.fn.resolve(fullPath)
 end
@@ -54,10 +54,17 @@ function read_env()
     return table['configurations'][1]['env']
 end
 
+function set_env()
+    local tb = read_env()
+    for key, value in pairs(tb) do
+        vim.fn.setenv(key, value)
+    end
+end
 
 M.read_launch = read_launch
 M.read_args = read_args
 M.read_program = read_program
 M.read_env = read_env
+M.set_env = set_env
 
 return M

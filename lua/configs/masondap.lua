@@ -12,22 +12,22 @@ dap.adapters.lldb = {
 }
 -- If don't want to use lldb-vscode
 if not dap.adapters.codelldb then
-	dap.adapters.codelldb = {
-		type = "server",
-		host = "localhost",
-		port = "7878",
-		-- command = "/home/beloin/.local/share/nvim/mason/packages/codelldb/codelldb", -- adjust as needed, must be absolute path
-		-- name = "codelldb",
-		executable = {
-			command = "codelldb",
-			args = {"--port", "7878"}
-		}
-	}
+    dap.adapters.codelldb = {
+        type = "server",
+        host = "localhost",
+        port = "7878",
+        -- command = "/home/beloin/.local/share/nvim/mason/packages/codelldb/codelldb", -- adjust as needed, must be absolute path
+        -- name = "codelldb",
+        executable = {
+            command = "codelldb",
+            args = {"--port", "7878"}
+        }
+    }
 end
 
 local rl = require("scripts.read_launch")
 dap.configurations.cpp = {{
-	request = "launch",
+    request = "launch",
     type = "lldb",
     name = "Launch file",
 
@@ -48,6 +48,7 @@ dap.configurations.cpp = {{
     args = function()
         local rl = require("scripts.read_launch")
         local args = rl.read_args()
+        rl.set_env()
         if args then
             return args
         end
@@ -55,7 +56,6 @@ dap.configurations.cpp = {{
         local args_string = vim.fn.input("Arguments: ")
         return vim.split(args_string, " ")
     end,
-    env = rl.read_env()
 
     -- 💀
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
