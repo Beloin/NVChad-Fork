@@ -35,6 +35,7 @@ Search on `https://www.lazyvim.org/extras/lang/{language}` for the language, or:
 ## C/C++ with CMake
 
 1. Install obviously cmake and build-essentials
+1. codelldb, or lldb-vscode
 1. Install `unzip`
 1. Install with mason the required language setup
     > cmake-language-server

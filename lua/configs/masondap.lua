@@ -10,21 +10,52 @@ dap.adapters.lldb = {
     command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
     name = "lldb"
 }
+-- If don't want to use lldb-vscode
+if not dap.adapters.codelldb then
+	dap.adapters.codelldb = {
+		type = "server",
+		host = "localhost",
+		port = "7878",
+		-- command = "/home/beloin/.local/share/nvim/mason/packages/codelldb/codelldb", -- adjust as needed, must be absolute path
+		-- name = "codelldb",
+		executable = {
+			command = "codelldb",
+			args = {"--port", "7878"}
+		}
+	}
+end
 
+local rl = require("scripts.read_launch")
 dap.configurations.cpp = {{
-    name = "Launch",
+	request = "launch",
     type = "lldb",
-    request = "launch",
+    name = "Launch file",
+
+    -- TODO:  Parse your own env and args
     program = function()
-        vim.cmd("!cmake --build build")
+        local r = vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug ./build")
+        r = vim.cmd("make -C ./build")
+
+        local program = rl.read_program()
+        if program then
+            return program
+        end
+
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = function()
+        local rl = require("scripts.read_launch")
+        local args = rl.read_args()
+        if args then
+            return args
+        end
+
         local args_string = vim.fn.input("Arguments: ")
         return vim.split(args_string, " ")
-    end
+    end,
+    env = rl.read_env()
 
     -- 💀
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
@@ -88,33 +119,38 @@ for _, lang in ipairs({"cs", "fsharp", "vb"}) do
 end
 
 -- Configure DAP auto start
--- local dap, dapui = require("dap"), require("dapui")
+local dap, dapui = require("dap"), require("dapui")
 
--- dap.listeners.before.attach.dapui_config = function()
---   dapui.open()
--- end
+dap.listeners.before.attach.dapui_config = function()
+    dapui.open()
+end
 
--- dap.listeners.before.launch.dapui_config = function()
---   dapui.open()
--- end
+dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+end
 
--- dap.listeners.before.event_terminated.dapui_config = function()
---   dapui.close()
--- end
+dap.listeners.before.event_terminated.dapui_config = function()
+    dapui.close()
+end
 
--- dap.listeners.before.event_exited.dapui_config = function()
---   dapui.close()
--- end
+dap.listeners.before.event_exited.dapui_config = function()
+    dapui.close()
+end
 
 vim.keymap.set({'i', 'n'}, "<F5>", function()
-    -- (Re-)reads launch.json if present
-    if vim.fn.filereadable(".vscode/launch.json") then
-        local op = {
-            cpptools = {"c", "cpp"}
-        }
-        require("dap.ext.vscode").load_launchjs(nil, op)
-    end
+    -- (Re-)reads launch.json if present -- Use rl.reload();
     require("dap").continue()
+end, {
+    desc = "DAP Continue"
+})
+
+vim.keymap.set({'i', 'n'}, "<F6>", function()
+    local rl = require("scripts.read_launch")
+    local table = rl.read_launch()
+    print(table)
+    print(table['configurations'])
+    print(table['configurations'][1])
+    print(table['configurations'][1]['env'])
 end, {
     desc = "DAP Continue"
 })
