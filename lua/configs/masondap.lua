@@ -55,7 +55,7 @@ dap.configurations.cpp = {{
 
         local args_string = vim.fn.input("Arguments: ")
         return vim.split(args_string, " ")
-    end,
+    end
 
     -- 💀
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
@@ -88,10 +88,11 @@ dap.configurations.cs = {{
     program = function()
         vim.cmd("!dotnet build")
         return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+    end,
+    args = function()
+        rl.set_env()
+        return rl.read_args()
     end
-    -- env = function()
-    -- 	return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
-    -- end
 }}
 
 if not dap.adapters["netcoredbg"] then
@@ -132,7 +133,6 @@ end
 -- dap.listeners.before.event_terminated.dapui_config = function()
 --     dapui.close()
 -- end
-
 -- dap.listeners.before.event_exited.dapui_config = function()
 --     dapui.close()
 -- end
