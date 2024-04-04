@@ -31,7 +31,6 @@ dap.configurations.cpp = {{
     type = "lldb",
     name = "Launch file",
 
-    -- TODO:  Parse your own env and args
     program = function()
         local r = vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug ./build")
         r = vim.cmd("make -C ./build")
@@ -95,6 +94,7 @@ dap.configurations.cs = {{
     end
 }}
 
+-- TODO: Configure cs to use netcoredbg instead of coreclr
 if not dap.adapters["netcoredbg"] then
     require("dap").adapters["netcoredbg"] = {
         type = "executable",
