@@ -50,12 +50,14 @@ function read_env()
     if not table then
         return nil
     end
-    print(table['configurations'][1]['env']['TEST_2'])
     return table['configurations'][1]['env']
 end
 
 function set_env()
     local tb = read_env()
+    if not table then
+        return
+    end
     for key, value in pairs(tb) do
         vim.fn.setenv(key, value)
     end

@@ -81,11 +81,16 @@ dap.adapters.coreclr = {
 }
 
 dap.configurations.cs = {{
-    type = "coreclr",
+    type = "netcoredbg",
     name = "launch - netcoredbg",
     request = "launch",
     program = function()
         vim.cmd("!dotnet build")
+		local program = rl.read_program()
+        if program then
+            return program
+        end
+
         return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
     end,
     args = function()
@@ -94,7 +99,7 @@ dap.configurations.cs = {{
     end
 }}
 
--- TODO: Configure cs to use netcoredbg instead of coreclr
+-- TODO: Configure cs to use netcoredbg? instead of coreclr
 if not dap.adapters["netcoredbg"] then
     require("dap").adapters["netcoredbg"] = {
         type = "executable",
