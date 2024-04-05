@@ -63,10 +63,16 @@ function set_env()
     end
 end
 
+function read_profile()
+    local table = read_launch()
+    return table['configurations'][1]['profile']
+end
+
 M.read_launch = read_launch
 M.read_args = read_args
 M.read_program = read_program
 M.read_env = read_env
 M.set_env = set_env
+M.read_profile = read_profile
 
 return M

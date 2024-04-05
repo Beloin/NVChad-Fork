@@ -25,6 +25,7 @@ if not dap.adapters.codelldb then
     }
 end
 
+local csLaunch = require("scripts.cs_launch")
 local rl = require("scripts.read_launch")
 dap.configurations.cpp = {{
     request = "launch",
@@ -95,6 +96,7 @@ dap.configurations.cs = {{
     end,
     args = function()
         rl.set_env()
+		csLaunch.read_launch_sttgs()
         return rl.read_args()
     end
 }}
