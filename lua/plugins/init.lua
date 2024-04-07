@@ -530,5 +530,11 @@ return {
       })
     end,
     event = "VeryLazy"
+  },
+
+  {
+    'kevinhwang91/nvim-bqf',
+    event = "VeryLazy",
+    vim.keymap.set("n", "<F2>", "<cmd>QFToggle<CR>", { desc = "Toggle Quickfix", silent = true })
   }
 }

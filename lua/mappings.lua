@@ -49,7 +49,7 @@ function toggle_quickfix()
   end
 end
 
-map("n", "<F2>", toggle_quickfix, { desc = "Toggle Quickfix", silent = true })
+-- map("n", "<F2>", toggle_quickfix, { desc = "Toggle Quickfix", silent = true })
 
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Telescope Git Branchs" })
 map("n", "<leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git diffthis" })
