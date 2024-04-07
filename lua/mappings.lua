@@ -33,17 +33,26 @@ map("n", "<leader>cf", function()
 end, { desc = "[c]ode [f]ormat" })
 
 -- Lua function to toggle quickfix window
-function toggle_quickfix()
-    if #vim.fn.getwininfo() == 0 or vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), "v:val.quickfix")) then
-        vim.cmd("copen")
-    else
-        vim.cmd("cclose")
+function toggle_quickfix() 
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      qf_exists = true
     end
+  end
+  if qf_exists == true then
+    vim.cmd "cclose"
+    return
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd "copen"
+  end
 end
 
 map("n", "<F2>", toggle_quickfix, { desc = "Toggle Quickfix", silent = true })
 
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Telescope Git Branchs" })
+map("n", "<leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git diffthis" })
 map("n", "<leader>gs", "<cmd>Telescope git_stash<CR>", { desc = "Telescope Git Stash" })
 map("n", "<leader>gs", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git Commits" })
 
@@ -54,3 +63,22 @@ map("n", "<leadler>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { de
 map("n", "<leader>Fb", "vaB:fold<CR>", { desc = "Fold Block" })
 
 map("n", "<leader>o", "i<CR><esc>", { desc = "Add one line" })
+
+
+-- Telescope Setup
+require('telescope').setup{
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      n = {
+    	  ['<c-d>'] = require('telescope.actions').delete_buffer
+      }, -- n
+      i = {
+        ["<C-h>"] = "which_key",
+        ['<c-d>'] = require('telescope.actions').delete_buffer
+      } -- i
+    } -- mappings
+  }, -- defaults
+...
+} -- telescope setup

@@ -50,6 +50,7 @@ autocmd('VimEnter', {
   once = true
 })
 
+-- TODO: Use this when .
 -- autocmd('VimEnter', {  
 --   callback = function()
 --     local args = vim.v.argv
