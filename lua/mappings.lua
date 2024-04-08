@@ -32,25 +32,6 @@ map("n", "<leader>cf", function()
   vim.lsp.buf.format()
 end, { desc = "[c]ode [f]ormat" })
 
--- Lua function to toggle quickfix window
-function toggle_quickfix() 
-  local qf_exists = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win["quickfix"] == 1 then
-      qf_exists = true
-    end
-  end
-  if qf_exists == true then
-    vim.cmd "cclose"
-    return
-  end
-  if not vim.tbl_isempty(vim.fn.getqflist()) then
-    vim.cmd "copen"
-  end
-end
-
--- map("n", "<F2>", toggle_quickfix, { desc = "Toggle Quickfix", silent = true })
-
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Telescope Git Branchs" })
 map("n", "<leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git diffthis" })
 map("n", "<leader>gs", "<cmd>Telescope git_stash<CR>", { desc = "Telescope Git Stash" })
