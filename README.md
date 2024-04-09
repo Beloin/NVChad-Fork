@@ -70,3 +70,13 @@ Use the package Task to configure the CMake Tasks, including debug
 1. Mason:
     > netcoredbg
     > csharpier
+
+
+## Python
+
+1. Jedi language-server
+    - `pip install -U jedi-language-server`
+    - Or with Mason
+2. Venv selector
+    - Install [fd](https://github.com/sharkdp/fd)
+    - `sudo pacman -S fd` or `sudo apt install fd-find`

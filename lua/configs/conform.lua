@@ -1,24 +1,17 @@
 local M = {}
 
-M.opts = {
+M.setup = {
+	-- Hate this:
 	-- format_on_save = {
 	-- 	timeout_ms = 500,
 	-- 	lsp_fallback = true,
 	-- },
 	formatters = {
 		xmlformat = {
-			cmd = { "xmlformat" },
+			command = { "xmlformat" },
 			args = { "--selfclose", "-" },
 		},
 
-		clangformat = {
-			cmd = { "/home/beloin/.local/share/nvim/mason/bin/clang-format" },
-		},
-
-		cmakeformat = {
-			cmd = { "/home/beloin/.local/share/nvim/mason/bin/cmake-format" }
-		},
-		
 		csharpier = {
 			command = "/home/beloin/.local/share/nvim/mason/bin/dotnet-csharpier",
 			args = { "--write-stdout" },
@@ -32,12 +25,15 @@ M.opts = {
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
 		xml = { "xmlformat" },
-		cpp = { "clangformat" },
-		c = { "clangformat" },
-		cmake = { "cmakeformat" },
+		cpp = { "clang-format" },
+		c = { "clang-format" },
+		cmake = { "cmake-format" },
 		sql = { "sql-formatter" },
-		-- yaml = { "yamlfix" },
+		yaml = { "yamlfix" },
 		go = { "goimports", "gofumpt" },
+		python = { "autopep8" },
+		py = { "autopep8" },
+		sh = { "shfmt" }
 	},
 	lsp_fallback = true,
 }

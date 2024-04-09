@@ -10,10 +10,10 @@ return {
   {
     -- Code formatter
     "stevearc/conform.nvim",
-    opts = require("configs.conform").opts,
-    -- config = function()
-    --   require "configs.conform"
-    -- end,
+    -- opts = require("configs.conform").opts,
+    config = function()
+      require("conform").setup(require("configs.conform").setup)
+    end,
     event = "VeryLazy",
   },
 
@@ -48,10 +48,18 @@ return {
         "typescript",
         "vim",
         "yaml",
+
+        -- Golang
         "go",
         "gomod",
         "gowork",
         "gosum",
+
+        -- C/C++ && CMake
+        "cmake",
+
+        -- Python
+        "ninja", "python", "rst", "toml",
       },
     },
   },
@@ -84,8 +92,13 @@ return {
          "autopep8",
          "clang-format",
          "clangd",
+         
+         -- C/C++ CMake
          "cmake-language-server",
+         "cmakelint",
          "cmakelang",
+         "neocmakelsp",
+
          "codelldb",
          "cpplint",
          "cpptools",
@@ -381,14 +394,6 @@ return {
     },
   },
 
-  -- Brakes cmp
-  -- {
-  --   "nvim-cmp",
-  --   opts = function(_, opts)
-  --     table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
-  --   end,
-  -- }
-
 
   {
     -- Todo setup in other file
@@ -536,5 +541,43 @@ return {
     'kevinhwang91/nvim-bqf',
     event = "VeryLazy",
     vim.keymap.set("n", "<F2>", "<cmd>QFToggle<CR>", { desc = "Toggle Quickfix", silent = true })
-  }
+  },
+
+  -- Python
+
+  {
+    "nvim-neotest/neotest-python",
+  },
+
+  {
+    "mfussenegger/nvim-dap-python",
+    -- stylua: ignore
+    keys = {
+      { "<leader>DPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+      { "<leader>DPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+    },
+    config = function()
+      local path = require("mason-registry").get_package("debugpy"):get_install_path()
+      require("dap-python").setup(path .. "/venv/bin/python")
+    end,
+  },
+
+  {
+    -- Needs fd command
+    "linux-cultist/venv-selector.nvim",
+    cmd = "VenvSelect",
+    opts = function(_, opts)
+      opts.dap_enabled = true
+      return vim.tbl_deep_extend("force", opts, {
+        name = {
+          "venv",
+          ".venv",
+          "env",
+          ".env",
+        },
+      })
+    end,
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    ft = {"py", "ipynb", "python"}
+  },
 }

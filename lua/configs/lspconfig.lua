@@ -29,7 +29,7 @@ local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
 local servers = {"html", "cssls", "clangd", "omnisharp", "ast-grep", "lua-language-server", "sqlls",
-                 "cmake-language-server", "gopls", "json-lsp", "jedi-language-server"}
+                 "cmake-language-server", "gopls", "json-lsp"}
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
@@ -41,12 +41,11 @@ end
 
 -- Language Specifics
 
-lspconfig["cmake-language-server"].setup({
+lspconfig["neocmake"].setup {
+    on_init = on_init,
     on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {"/home/beloin/.local/share/nvim/mason/bin/cmake-language-server"},
-    filetype = {"cmake", "CMakeLists.txt"}
-})
+    capabilities = capabilities
+}
 
 lspconfig['gopls'].setup {
     on_attach = on_attach,
@@ -117,6 +116,7 @@ lspconfig['gopls'].setup {
 }
 
 lspconfig.omnisharp.setup({
+    on_init = on_init,
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {"/home/beloin/.local/share/nvim/mason/packages/omnisharp/omnisharp"},
@@ -184,6 +184,13 @@ lspconfig['jsonls'].setup {
             }
         }
     }
+}
+
+-- Python
+lspconfig['jedi_language_server'].setup {
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities
 }
 
 -- Mappings

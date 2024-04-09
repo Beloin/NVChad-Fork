@@ -87,7 +87,7 @@ dap.configurations.cs = {{
     request = "launch",
     program = function()
         vim.cmd("!dotnet build")
-		local program = rl.read_program()
+        local program = rl.read_program()
         if program then
             return program
         end
@@ -96,7 +96,7 @@ dap.configurations.cs = {{
     end,
     args = function()
         rl.set_env()
-		csLaunch.read_launch_sttgs()
+        csLaunch.read_launch_sttgs()
         return rl.read_args()
     end
 }}
@@ -125,6 +125,22 @@ for _, lang in ipairs({"cs", "fsharp", "vb"}) do
         }}
     end
 end
+
+-- Python DAP
+-- dap.adapters.python = {
+--     type = 'executable',
+--     command = vim.fn.getcwd() .. "/venv/bin/python",
+--     args = {'-m', 'debugpy.adapter'}
+-- }
+
+-- dap.configurations.python = {{
+--     type = 'python',
+--     request = 'launch',
+--     name = "Launch file",
+--     program = "${file}",
+--     pythonPath = 'python' -- /venv/bin/python
+-- }}
+require("dap-python").setup("python")
 
 -- Configure DAP auto start
 local dap, dapui = require("dap"), require("dapui")
