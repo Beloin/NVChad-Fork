@@ -55,7 +55,7 @@ end
 
 function set_env()
     local tb = read_env()
-    if not table then
+    if not tb then
         return
     end
     for key, value in pairs(tb) do
