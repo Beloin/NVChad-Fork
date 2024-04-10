@@ -36,7 +36,9 @@ map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Telescope Gi
 map("n", "<leader>gd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git diffthis" })
 map("n", "<leader>gs", "<cmd>Telescope git_stash<CR>", { desc = "Telescope Git Stash" })
 map("n", "<leader>gs", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git Commits" })
-
+map("n", "<leader>gF", "<cmd>Flog<CR>", { desc = "Flog" })
+map("n", "<leader>gfg", "<cmd>Floggit<CR>", { desc = "Floggit" })
+map("n", "<leader>gfs", "<cmd>Flogsplit<CR>", { desc = "Flogsplit" })
 
 map("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
 map("n", "<leadler>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
@@ -44,6 +46,9 @@ map("n", "<leadler>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { de
 map("n", "<leader>Fb", "vaB:fold<CR>", { desc = "Fold Block" })
 
 map("n", "<leader>o", "i<CR><esc>", { desc = "Add one line" })
+
+-- Windows Utility
+map("n", "<leader>wc", ":q<CR>", { desc = "Window quit" })
 
 
 -- Telescope Setup
