@@ -80,3 +80,11 @@ Use the package Task to configure the CMake Tasks, including debug
 2. Venv selector
     - Install [fd](https://github.com/sharkdp/fd)
     - `sudo pacman -S fd` or `sudo apt install fd-find`
+2. Or: Already open the neovim from a venv! -- Better and more reliable
+3. Python provider
+    - `python3 -m pip install --user --upgrade pynvim`
+    - Or, in local: - `pip install --upgrade pynvim`
+4. [Optional] Jupyter Notebook
+    - Install ipython: `pip install --user --upgrade --break-system-packages ipython`
+    - Run with `:JukitStart`
+    - More info on [Jukit](https://github.com/luk400/vim-jukit)
