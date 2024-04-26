@@ -7,21 +7,22 @@ function read_launch_sttgs(path)
     path = vim.fn.getcwd() .. '/./' .. path
     path = vim.fn.resolve(path)
     local profile = rl.read_profile()
+    if not profile then
+        return nil
+    end
 
-    print("Profile: ")
-    print(profile)
-    print("Path: ")
-    print(path)
-    
+    print("Profile: " .. profile)
+    print("Path: " .. path)
+
     local table = nil
 
     local lsttgs = io.open(path)
     if lsttgs then
-        local content = lsttgs:read("*all") 
+        local content = lsttgs:read("*all")
         lsttgs:close()
 
         table = vim.json.decode(content) -- Problem with decode
-    else 
+    else
         return false
     end
 

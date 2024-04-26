@@ -1,5 +1,10 @@
 local M = {}
 
+-- Example:
+-- {
+--
+-- }
+
 M.current_table = nil -- TODO: Add cache to table
 function read_launch()
     local cwd = vim.fn.getcwd()
@@ -65,6 +70,9 @@ end
 
 function read_profile()
     local table = read_launch()
+    if not table then
+        return nil
+    end
     return table['configurations'][1]['profile']
 end
 
