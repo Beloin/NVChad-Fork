@@ -602,5 +602,12 @@ return {
     end,
     event = "VeryLazy"
   },
-
+  {
+    'chrisbra/csv.vim',
+    ft = { 'csv' }
+  },
+  {
+    'wfxr/minimap.vim',
+    event = 'VeryLazy'
+  }
 }
