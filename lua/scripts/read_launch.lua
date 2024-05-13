@@ -39,6 +39,20 @@ function read_args()
     return args
 end
 
+function should_preprocess()
+    local table = read_launch()
+    if not table then
+        return true
+    end
+
+    local prep = table['configurations'][1]['preProcess']
+    if prep == nil then
+        return true
+    end
+
+    return prep
+end
+
 function read_program()
     local table = read_launch()
     if not table then
@@ -82,5 +96,6 @@ M.read_program = read_program
 M.read_env = read_env
 M.set_env = set_env
 M.read_profile = read_profile
+M.should_preprocess = should_preprocess
 
 return M

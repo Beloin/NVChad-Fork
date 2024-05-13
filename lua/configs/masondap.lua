@@ -33,8 +33,12 @@ dap.configurations.cpp = {{
     name = "Launch file",
 
     program = function()
-        local r = vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug ./build")
-        r = vim.cmd("make -C ./build")
+        local prep = rl.should_preprocess()
+
+        if prep then
+            local r = vim.cmd("!cmake -DCMAKE_BUILD_TYPE=Debug ./build")
+            r = vim.cmd("make -C ./build")    
+        end
 
         local program = rl.read_program()
         if program then
