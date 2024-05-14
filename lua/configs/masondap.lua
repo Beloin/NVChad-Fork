@@ -75,7 +75,46 @@ dap.configurations.cpp = {{
     -- runInTerminal = false,
 }}
 
-dap.configurations.c = dap.configurations.cpp
+-- C with gdb
+dap.adapters.gdb = {
+  type = "executable",
+  command = "gdb",
+  args = { "-i", "dap" }
+}
+dap.configurations.c = {{
+    request = "launch",
+    type = "gdb",
+    name = "Launch file",
+
+    program = function()
+        local prep = rl.should_preprocess()
+
+        if prep then
+            local r = vim.cmd("make")    
+        end
+
+        local program = rl.read_program()
+        if program then
+            return program
+        end
+
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+    args = function()
+        local rl = require("scripts.read_launch")
+        local args = rl.read_args()
+        rl.set_env()
+        if args then
+            return args
+        end
+
+        local args_string = vim.fn.input("Arguments: ")
+        return vim.split(args_string, " ")
+    end,
+    stopAtBeginningOfMainSubprogram = false,
+}}
 
 -- C# Dap configurations
 

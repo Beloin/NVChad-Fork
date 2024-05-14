@@ -59,6 +59,10 @@ function read_program()
         return nil
     end
     local program = table['configurations'][1]['program']
+    if not program then
+        return nil
+    end
+
     fullPath = vim.fn.getcwd() .. '/./' .. program
 
     return vim.fn.resolve(fullPath)
