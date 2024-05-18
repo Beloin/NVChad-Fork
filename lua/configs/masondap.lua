@@ -90,7 +90,13 @@ dap.configurations.c = {{
         local prep = rl.should_preprocess()
 
         if prep then
-            local r = vim.cmd("make")    
+            local pipeline = rl.read_pipeline()
+
+            for index = 1, #pipeline do
+                print('Running ' .. pipeline[index])
+                vim.cmd(pipeline[index])
+            end
+            -- local r = vim.cmd("make debug")    
         end
 
         local program = rl.read_program()
@@ -113,7 +119,7 @@ dap.configurations.c = {{
         local args_string = vim.fn.input("Arguments: ")
         return vim.split(args_string, " ")
     end,
-    stopAtBeginningOfMainSubprogram = false,
+    
 }}
 
 -- C# Dap configurations

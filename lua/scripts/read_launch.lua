@@ -39,6 +39,18 @@ function read_args()
     return args
 end
 
+function read_pipeline()
+    local table = read_launch()
+    if not table then
+        return nil
+    end
+
+    local args = table['configurations'][1]['pipeline']
+
+    return args
+end
+
+
 function should_preprocess()
     local table = read_launch()
     if not table then
@@ -101,5 +113,6 @@ M.read_env = read_env
 M.set_env = set_env
 M.read_profile = read_profile
 M.should_preprocess = should_preprocess
+M.read_pipeline = read_pipeline
 
 return M
