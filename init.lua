@@ -54,12 +54,15 @@ autocmd('VimEnter', {
 -- autocmd('VimEnter', {  
 --   callback = function()
 --     local args = vim.v.argv
---     if #args > 1 then
---       if args[3] == '.' then
---         require('session-manager').load_current_dir_session()
+--     if #args > 2 then
+--       print("args bigger then 2" .. #args)
+--       if args[#args] == '.' then
+--         require('neovim-session-manager').load_current_dir_session()
 --       end
 --     end
---     print(args)
+--
+--     local utils = require("scripts.utils.utils")
+--     print(utils.dump(args))
 --   end,
 --   once = true
 -- })

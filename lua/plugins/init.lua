@@ -221,7 +221,8 @@ return {
 
   { 
     'Shatur/neovim-session-manager',
-    lazy = false,
+    -- lazy = false,
+    event = "VimEnter",
     vim.keymap.set('n', '<leader>sc', ':SessionManager load_current_dir_session<CR>:NvimTreeToggle<CR>', {desc = '[s]ession load [c]urrent', silent= true }),
     vim.keymap.set('n', '<leader>sl', ':SessionManager load_session<CR>', {desc = '[s]ession [l]oad', silent= true }),
   },
