@@ -53,11 +53,10 @@ autocmd('VimEnter', {
 autocmd('VimEnter', {  
   callback = function()
     local args = vim.v.argv
-    if #args > 2 then
+    if #args >= 2 then
       if args[#args] == '.' then
         print("neovim last arg was '.', running current dir session.")
         vim.cmd(':SessionManager load_current_dir_session')
-        vim.cmd(':NvimTreeToggle')
       end
     end
   end,
