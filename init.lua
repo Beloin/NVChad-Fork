@@ -50,22 +50,19 @@ autocmd('VimEnter', {
   once = true
 })
 
--- TODO: Use this when .
--- autocmd('VimEnter', {  
---   callback = function()
---     local args = vim.v.argv
---     if #args > 2 then
---       print("args bigger then 2" .. #args)
---       if args[#args] == '.' then
---         require('neovim-session-manager').load_current_dir_session()
---       end
---     end
---
---     local utils = require("scripts.utils.utils")
---     print(utils.dump(args))
---   end,
---   once = true
--- })
+autocmd('VimEnter', {  
+  callback = function()
+    local args = vim.v.argv
+    if #args > 2 then
+      if args[#args] == '.' then
+        print("neovim last arg was '.', running current dir session.")
+        vim.cmd(':SessionManager load_current_dir_session')
+        vim.cmd(':NvimTreeToggle')
+      end
+    end
+  end,
+  once = true
+})
 
 autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank() end,
