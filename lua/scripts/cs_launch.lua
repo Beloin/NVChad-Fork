@@ -19,6 +19,7 @@ function read_launch_sttgs(path)
     local lsttgs = io.open(path)
     if lsttgs then
         local content = lsttgs:read("*all")
+        print(content)
         lsttgs:close()
 
         table = vim.json.decode(content) -- Problem with decode

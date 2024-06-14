@@ -92,7 +92,7 @@ return {
          "autopep8",
          "clang-format",
          "clangd",
-         
+
          -- C/C++ CMake
          "cmake-language-server",
          "cmakelint",
@@ -610,5 +610,11 @@ return {
   {
     'wfxr/minimap.vim',
     event = 'VeryLazy'
+  },
+
+  {
+    'rhysd/conflict-marker.vim',
+    event = 'VeryLazy'
   }
+
 }
